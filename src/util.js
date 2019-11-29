@@ -22,14 +22,13 @@ export function makeMap (str) {
 }
 
 export function debounce (fn, delay=50) {
-    let originTime = new Date().getTime()
+    let timer = null
     return function () {
         let args = arguments
-        let currentTime = new Date().getTime()
-        if (currentTime - originTime > delay) {
-            fn.apply(this, args)
-        }
-        originTime = currentTime
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+           fn.apply(this, args)
+        }, delay)
     }
 }
 
