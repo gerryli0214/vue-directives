@@ -1,19 +1,22 @@
-# 防抖节流使用指南
-## 默认参数：
-| 参数名称 | 数据类型 | 必填 | 默认值 | 
+# debounce && throttle
+## params list：
+| params | type | require | default | 
 | ------ | ------ | ------ | ------ |
-| fun | String | true | 空 |
+| fun | String | true | (empty) |
 | event | String | false | click |
-| args | Any | false | 空 |
+| args | Any | false | (empty) |
 | wait | Number | false | 200 |
-## 备注：
-### 1、	modifiers为指令修饰符，默认与vue事件绑定保持一致，目前支持的事件类型：click,dblclick,keyup,keydown,keypress,mouseup,mousedown,mouseover,mouseleave,scroll，事件修饰符stop => 阻止事件冒泡，prev => 阻止默认事件
-### 2、	自定义指令默认通过原生JS注册元素事件，在按钮元素上使用的时候，需要移出通过v-on(@)绑定的事件
-## 使用方法（节流同理）
-- 方法1：
+## remark：
+### 1、	modifiers support event type：click,dblclick,keyup,keydown,keypress,mouseup,mousedown,mouseover,mouseleave,scroll，stop => stopPropagation，prev => preventDefault
+### 2、	register event by DOM, you should not use v-on bind events.
+## how to use（throttle like this）
+1. npm install v-debounce-throttle -D
+2. import vueDirective from 'v-debounce-throttle'
+3. Vue.use(vueDirective)
+- methods-1：
 	v-debounce=”funName”
-- 方法2：
+- methods-2：
 	v-debounce=”{fun: ‘xxx’, event: ‘xxx’}”
-- 方法3：
+- methods-3：
 	v-debounce.click.stop=’funName’
 
