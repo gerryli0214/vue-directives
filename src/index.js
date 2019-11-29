@@ -1,7 +1,7 @@
 import { isFunction, isObject, noop, makeMap, debounce, throttle } from './util'
 const directives = {}
 // 存储指令所需参数
-const eventParams = {}
+let eventParams = {}
 // 支持事件对象
 const hasEventKey = makeMap('click,dblclick,keyup,keydown,keypress,mouseup,mousedown,mouseover,mouseleave,scroll')
 directives.install = function (Vue) {
@@ -9,11 +9,11 @@ directives.install = function (Vue) {
         bind (el, binding, vnode) {
             let defaultConfig = initEventParams(binding)
             eventParams = defaultConfig
+            bindElementEvent(el, vnode.context, 'debounce')
         },
         update (el, binding, vnode) {
             let defaultConfig = initEventParams(binding)
             eventParams = defaultConfig
-            bindElementEvent(el, vnode.context, 'debounce')
         }
     })
 
@@ -21,11 +21,11 @@ directives.install = function (Vue) {
         bind (el, binding, vnode) {
             let defaultConfig = initEventParams(binding)
             eventParams = defaultConfig
+            bindElementEvent(el, vnode.context, 'throttle')
         },
         update (el, binding, vnode) {
             let defaultConfig = initEventParams(binding)
             eventParams = defaultConfig
-            bindElementEvent(el, vnode.context, 'throttle')
         }
     })
 }

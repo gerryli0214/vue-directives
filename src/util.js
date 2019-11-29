@@ -1,5 +1,5 @@
 export function isFunction (fun) {
-    return Object.prototype.toString.call(fun) === '[object String]'
+    return Object.prototype.toString.call(fun) === '[object Function]'
 }
 
 export function isObject (fun) {
