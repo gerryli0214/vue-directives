@@ -9,7 +9,7 @@
 ## remark：
 ### 1、	modifiers support event type：click,dblclick,keyup,keydown,keypress,mouseup,mousedown,mouseover,mouseleave,scroll，stop => stopPropagation，prev => preventDefault
 ### 2、	register event by DOM, you should not use v-on bind events.
-### 3、中文文档地址：https://www.cnblogs.com/gerry2019/p/11962009.html
+[中文文档](https://www.cnblogs.com/gerry2019/p/11962009.html)
 ## how to use（throttle like this）
 1. npm install v-debounce-throttle -D
 2. import vueDirective from 'v-debounce-throttle'
