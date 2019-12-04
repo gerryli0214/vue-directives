@@ -14,7 +14,6 @@
   ],
   "author": "gerry",
   "license": "MIT",
-  "unpkg": "lib/bundle.js",
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/plugin-external-helpers": "^7.7.4",
@@ -22,6 +21,8 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "rollup": "^1.27.5",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.3"
   }
 }
