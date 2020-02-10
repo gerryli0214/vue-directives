@@ -1,23 +1,66 @@
-# debounce && throttle
-## params list：
-| params | type | require | default | 
-| ------ | ------ | ------ | ------ |
-| fun | String | true | (empty) |
-| event | String | false | click |
-| args | Any | false | (empty) |
-| wait | Number | false | 200 |
-## remark：
-### 1、	modifiers support event type：click,dblclick,keyup,keydown,keypress,mouseup,mousedown,mouseover,mouseleave,scroll，stop => stopPropagation，prev => preventDefault
-### 2、	register event by DOM, you should not use v-on bind events.
-[中文文档](https://www.cnblogs.com/gerry2019/p/11962009.html)
-## how to use（throttle like this）
-1. npm install v-debounce-throttle -D
-2. import vueDirective from 'v-debounce-throttle'
-3. Vue.use(vueDirective)
-- methods-1：
-	v-debounce=”funName”
-- methods-2：
-	v-debounce=”{fun: ‘xxx’, event: ‘xxx’}”
-- methods-3：
-	v-debounce.click.stop=’funName’
+# v-debounce-throttle
+
+## 简介
+`v-debounce-throttle`是一个vue防抖节流指令，控制单一事件的触发频率。其核心是拦截组件元素的`v-on`绑定事件，采用原生的事件注册机制。具体代码如下：
+- [gitHub](https://github.com/gerryli0214/vue-directives)
+- [npm](https://www.npmjs.com/package/v-debounce-throttle)
+
+## 起步
+1. 安装
+```
+npm install v-debounce-throttle -D
+```
+2. 引入
+```ecmascript 6
+import v-debounce-throttle from 'v-debounce-throttle'
+Vue.use(v-debounce-throttle)
+```
+3. 示例
+- 防抖
+```html
+<button v-debounce="handleClick"></button>
+```
+- 节流
+```html
+<button v-throttle="handleClick"></button>
+```
+
+## 使用案例
+- 使用方法1
+```html
+<button v-debounce="handleClick">方法1</button>
+```
+- 使用方法2
+```html
+<button v-debounce="{fun: 'handleClick', event: 'click'}"></button>
+```
+- 使用方法3
+```html
+<button v-debounce.dblclick.stop="handleDblclick"></button>
+```
+
+## API文档
+
+### 参数
+| 参数名称 | 数据类型 | 必填 | 默认值 |
+| --- | --- | --- | --- |
+| index | string | true | null |
+| event | string | false | click |
+| args | any | false | null |
+| wait | number | false | 200 |
+
+### 修饰符(modifier)
+- 事件
+    - click
+    - dblclick
+    - keyup
+    - keydown
+    - keypress
+    - mousedown
+    - mouseover
+    - mouseleave
+    - scroll
+- 事件修饰符
+    - stop(取消冒泡)
+    - prev(阻止默认事件)
 
