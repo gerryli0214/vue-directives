@@ -6,7 +6,7 @@
 ## 起步
 1. 安装
 ```shell script
-npm install directives -D
+npm install v-debounce-throttle -D
 ```
 2. 引入
 ```ecmascript 6
