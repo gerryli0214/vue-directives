@@ -1,4 +1,4 @@
-import { isFunction, isObject, noop, makeMap, debounce, throttle } from './util'
+import { isFunction, isObject, makeMap, debounce, throttle } from './util'
 const directives = {}
 // 存储指令所需参数
 let eventParams = {}
@@ -58,20 +58,19 @@ function bindElementEvent (el, context, type) {
         console.warn(`方法名【${fun}】在组件中未定义`)
         return
     }
-    el.removeEventListener(event, noop)
+    el.removeEventListener(event, handleBindingEvent)
     if (type === 'debounce') {
-        el.addEventListener(event, debounce(e => {
-            if (modifiers.stop) e.stopPropagation();
-            if (modifiers.prev) e.preventDefault()
-            context[fun].call(null, e, args)
-        }, wait))
+        el.addEventListener(event, debounce(handleBindingEvent, wait))
     } else if (type === 'throttle') {
-        el.addEventListener(event, throttle(e => {
-            if (modifiers.stop) e.stopPropagation();
-            if (modifiers.prev) e.preventDefault()
-            context[fun].call(null, e, args)
-        }, wait))
+        el.addEventListener(event, throttle(handleBindingEvent, wait))
     }
+
+    function handleBindingEvent(e) {
+        if (modifiers.stop) e.stopPropagation();
+        if (modifiers.prev) e.preventDefault();
+        context[fun].call(null, e, args);
+    }
+
 }
 
 export default directives
