@@ -1,6 +1,6 @@
 {
   "name": "v-debounce-throttle",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "debounce && throttle",
   "main": "lib/bundle.js",
   "scripts": {
