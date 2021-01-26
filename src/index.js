@@ -14,6 +14,7 @@ directives.install = function (Vue) {
         update (el, binding, vnode) {
             let defaultConfig = initEventParams(binding)
             eventParams = defaultConfig
+            bindElementEvent(el, vnode.context, 'debounce')
         }
     })
 
@@ -26,6 +27,7 @@ directives.install = function (Vue) {
         update (el, binding, vnode) {
             let defaultConfig = initEventParams(binding)
             eventParams = defaultConfig
+            bindElementEvent(el, vnode.context, 'throttle')
         }
     })
 }
@@ -60,9 +62,9 @@ function bindElementEvent (el, context, type) {
     }
     el.removeEventListener(event, handleBindingEvent)
     if (type === 'debounce') {
-        el.addEventListener(event, debounce(handleBindingEvent, wait))
+        el[`on${event}`] = debounce(handleBindingEvent, wait)
     } else if (type === 'throttle') {
-        el.addEventListener(event, throttle(handleBindingEvent, wait))
+        el[`on${event}`] = throttle(handleBindingEvent, wait)
     }
 
     function handleBindingEvent(e) {
