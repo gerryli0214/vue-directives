@@ -10,7 +10,7 @@ npm install v-debounce-throttle -S
 ```
 2. 引入
 ```ecmascript 6
-import vDebounceThrottle from directives
+import vDebounceThrottle from 'v-debounce-throttle'
 Vue.use(vDebounceThrottle)
 ```
 3. 示例
