@@ -1,4 +1,5 @@
-import { isFunction, isObject, makeMap, debounce, throttle } from './util'
+import { isFunction, isObject, makeMap } from './util'
+import { debounce, throttle } from 'lodash'
 const directives = {}
 // 存储指令所需参数
 let eventParams = {}
@@ -41,7 +42,7 @@ function initEventParams (binding) {
         modifiers: {}
     }
     let modifierList = Object.keys(binding.modifiers).filter(key => binding.modifiers[key])
-    defaultConfig.modifierList = binding.modifiers
+    defaultConfig.modifiers = binding.modifiers
     if (modifierList.length > 0) {
         let eventArr = modifierList.filter(vv => hasEventKey(vv))
         defaultConfig.event = eventArr.length === 0 ? 'click' : modifierList[0]
@@ -60,9 +61,24 @@ function bindElementEvent (el, context, type) {
         console.warn(`方法名【${fun}】在组件中未定义`)
         return
     }
-    el.removeEventListener(event, handleBindingEvent)
     if (type === 'debounce') {
-        el[`on${event}`] = debounce(handleBindingEvent, wait)
+        let fireEvents = {
+            leading: false,
+            trailing: true
+        }
+        if (modifiers.before) {
+            fireEvents = {
+                leading: true,
+                trailing: false
+            }
+        }
+        if (modifiers.all) {
+            fireEvents = {
+                leading: true,
+                trailing: true
+            }
+        }
+        el[`on${event}`] = debounce(handleBindingEvent, wait, fireEvents)
     } else if (type === 'throttle') {
         el[`on${event}`] = throttle(handleBindingEvent, wait)
     }

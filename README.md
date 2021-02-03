@@ -46,6 +46,8 @@ Vue.use(vDebounceThrottle)
 | args | Any | false | null | 附加参数 |
 | wait | Number | false | 200 | 等待时间 |
 
+默认延迟后触发，如若调整顺序，可以设置`before`、`all`修饰符
+
 ### 修饰符(modifier)
 - 事件
     - click
@@ -60,4 +62,6 @@ Vue.use(vDebounceThrottle)
 - 事件修饰符
     - stop(取消冒泡)
     - prev(阻止默认事件)
+    - before(防抖延迟前触发)
+    - all(防抖延迟前后都触发)
 

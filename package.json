@@ -1,6 +1,6 @@
 {
   "name": "v-debounce-throttle",
-  "version": "1.0.23",
+  "version": "2.0.2",
   "description": "debounce && throttle",
   "main": "lib/bundle.js",
   "scripts": {
@@ -24,5 +24,8 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-uglify": "^6.0.3"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
   }
 }
